@@ -1,0 +1,37 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "prod-defender",
+	"main": "src/index.js",
+	"compatibility_date": "2025-06-20",
+
+	"vars": {
+	  "POLICY_AUD": "9913b98dee7062ad51536d495ba32a3b1ee64823c46afa5b13ef590b13339abe",
+	  "TEAM_DOMAIN": "sherilnagoor.cloudflareaccess.com",
+	  "EXTERNAL_SERVICE_ENDPOINT": "https://prod-defender.sherilnagoor.com",
+	  //"MICROSOFT_TENANT_ID ": "d9679594-6d45-4894-9b08-e0e1e00f00c8"
+	},
+
+	"kv_namespaces": [
+		{
+		  "binding": "DEFENDER_KV",
+		  "id": "ad0cb9a192b0434895a54e12f93c5f3c"
+		}
+	  ],
+	"routes": [
+		{
+		"pattern": "prod-defender.sherilnagoor.com",
+		"custom_domain": true
+		}
+		
+	],
+	"workers_dev": false,
+    "preview_urls": false,
+	"observability": {
+        "enabled": true
+    }
+  }
